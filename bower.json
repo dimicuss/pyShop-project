@@ -1,0 +1,24 @@
+{
+  "name": "pyShop-project",
+  "description": "README",
+  "main": "app.js",
+  "authors": [
+    "dimicuss <dimicuss@gmail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "pyShopMl"
+  ],
+  "homepage": "https://github.com/dimicuss/pyShop-project",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.4.1"
+  }
+}
