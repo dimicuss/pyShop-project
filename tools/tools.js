@@ -1,15 +1,18 @@
-let fs = require('fs')
+const
+	fs       = require('fs'),
+	basePath = 'public/pages/index.html';
 
 module.exports = {
-	sendFile: (filename, res) => {
-		return () => {
-			fs.readFile(filename, (err, data) => {
-				if(err) {
-					return res.status(500).end()
-				}
+	withPage: (name, fn) => {
+		fs.readFile(basePath, (err, data) => {
+			if(err) {
+				return fn.call(null, err)
+			}
 
-				res.send(data)
-			})
-		}
+			data = data.toString()
+				.replace('%react_script%', name + '.js')
+
+			fn.call(null, null, data)
+		})
 	}
 }

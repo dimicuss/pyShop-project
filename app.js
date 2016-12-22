@@ -1,30 +1,23 @@
+global.db = require('./server/database')
+
 const
-	tools      = require('./tools/tools.js' ),
-	express    = require('express' ),
-	bodyParser = require('body-parser' ),
-	port       = 8080,
-	app        = express()
+	express      = require('express' ),
+	routes       = require('./server/routes')(express.Router),
+	bodyParser   = require('body-parser' ),
+	cookieParser = require('cookie-parser'),
+	port         = 8080,
+	app          = express()
 
 
 app.use(express.static('public/static'))
+app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
 
-app.get('/', (req, res, next) => {
-	res.format({
-		html: tools.sendFile('public/pages/index.html', res)
-	})
-})
-
-
-app.post('/auth', (req, res, next) => {
-	console.log(req.body)
-	res.redirect('/')
-})
-
+app.use(routes)
 
 app.listen(port, (err) => {
 	if(err) {

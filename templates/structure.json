@@ -1,0 +1,73 @@
+{
+  "users" : {
+    "test1" : {
+      "login" : "test1",
+      "password" : "test1"
+    },
+    "test2" : {
+      "login" : "test2",
+      "password" : "test2"
+    },
+    "test3" : {
+      "login" : "test3",
+      "password" : "test3"
+    }
+  },
+
+  "notes": {
+    "note1": {
+      "created_at":  1482357669495,
+      "name":        "name test1",
+      "description": "description test1",
+      "user":        "test1"
+    },
+    "note2": {
+      "created_at":   1482357669495,
+      "name":        "name test1",
+      "description": "description test1",
+      "user":        "test1"
+    },
+    "note3": {
+      "created_at":  1482357669495,
+      "name":        "name test1",
+      "description": "description test1",
+      "user":        "test1"
+    },
+    "note4": {
+      "created_at":  1482357669495,
+      "name":        "name test2",
+      "description": "description test2",
+      "user":        "test2"
+    },
+    "note5": {
+      "created_at":  1482357669495,
+      "name":        "name test2",
+      "description": "description test2",
+      "user":        "test2"
+    },
+    "note6": {
+      "created_at":  1482357669495,
+      "name":        "name test2",
+      "description": "description test2",
+      "user":        "test2"
+    },
+    "note7": {
+      "created_at":  1482357669495,
+      "name":        "name test3",
+      "description": "description test3",
+      "user":        "test3"
+    },
+    "note8": {
+      "created_at":  1482357669495,
+      "name":        "name test3",
+      "description": "description test3",
+      "user":        "test3"
+    },
+    "note9": {
+      "created_at":   1482357669495,
+      "name":        "name test3",
+      "description": "description test3",
+      "user":        "test3"
+    }
+  }
+}
