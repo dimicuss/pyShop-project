@@ -1,9 +1,9 @@
 const
 	path   = require('path' ),
 	gulp   = require('gulp' ),
-	concat = require('gulp-concat' ),
-	minify = require('gulp-minify' ),
-	react  = require('gulp-react' ),
+	concat = require('gulp-concat'),
+	minify = require('gulp-minify'),
+	react  = require('gulp-react'),
 	less   = require('gulp-less' ),
 	babel  = require('gulp-babel')
 

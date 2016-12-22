@@ -92,7 +92,7 @@
 				error: null
 			}
 			this.columns =
-				['name', 'pass', 'date', 'description']
+				['name', 'passed', 'date', 'description']
 
 			this.getRows()
 		}
