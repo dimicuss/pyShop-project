@@ -22,7 +22,7 @@
 				<div className="col-lg-8 col-no-padding">
 					<nav className="search-bar clearfix">
 						<div className="search-bar__elm">
-							<label htmlFor="column">Sort in</label>
+							<label htmlFor="column">Filter in</label>
 							<input id="column" className="search-bar__input" type="text" placeholder="Column"/>
 						</div>
 						<div className="search-bar__elm">
