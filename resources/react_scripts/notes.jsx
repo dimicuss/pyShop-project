@@ -53,6 +53,34 @@
 			]
 		}
 
+		sendQuery(key) {
+			return () => {
+				$.ajax({
+					url: '/deleteNote',
+					method: 'delete',
+					data: { key },
+					success: data => {
+						if(data.status === 'error') {
+							return this.props.setTableState({
+								error: {
+									message: data.message
+								}
+							})
+						}
+						location.reload()
+					},
+					error: error => {
+						console.log(error)
+						this.props.setTableState({
+							error: {
+								message: error.message
+							}
+						})
+					}
+				})
+			}
+		}
+
 		getRandomColor() {
 			let color =
 				this.colors[getRandomInt(0, this.colors.length)]
@@ -73,6 +101,9 @@
 					<td>{row.passed}</td>
 					<td>{row.name}</td>
 					<td>{row.description}</td>
+					<td className="td-right-fix"><button
+						onClick={this.sendQuery(row.key)}
+						className="btn btn-default btn-xs btn-fix">Delete</button></td>
 				</tr>)
 		}
 
@@ -102,10 +133,19 @@
 				url:    '/rows',
 				method: 'get',
 				success: data => {
+					if(data.status === 'error') {
+						return this.setState({
+							error: 'Error while ajax request'
+						})
+					}
 					this.pushRowState(
-						this.prepareRows(toArray(data)) )
+						this.prepareRows(toArray(data)))
 				},
-				error: console.error.bind(console)
+				error: () => {
+					this.setState({
+						error: 'Error while ajax request'
+					})
+				}
 			})
 		}
 
@@ -124,6 +164,7 @@
 				obj.passed = passed
 				obj.name   = row.name
 				obj.description = row.description
+				obj.key = row.key
 				return obj
 			})
 		}
@@ -149,7 +190,6 @@
 			const
 				baseRows = this.getFirstRowsState(),
 				filtered = baseRows.filter( row => {
-					console.log(row.name.indexOf(criterion))
 					return row[column].indexOf(criterion) > -1
 				})
 
@@ -216,9 +256,11 @@
 							<th>Passed</th>
 							<th>Name</th>
 							<th>Description</th>
+							<th></th>
 						</tr>
 						</thead>
-						<TableRows rows={this.getLastRowsState()}/>
+						<TableRows setTableState={this.setState.bind(this)}
+											 rows={this.getLastRowsState()}/>
 					</table>
 					<a className="btn btn-primary" href="/addNote">Add</a>
 					<a className="btn btn-primary _right" href="/logout">Logout</a>
@@ -236,7 +278,9 @@
 		const arr = []
 		for(let key in obj) {
 			if(obj.hasOwnProperty(key)) {
-				arr.push(obj[key])
+				const _obj = obj[key]
+				_obj.key = key
+				arr.push(_obj)
 			}
 		}
 		return arr

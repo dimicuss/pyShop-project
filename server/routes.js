@@ -107,6 +107,21 @@ module.exports = function(routers) {
 	})
 
 
+	router.delete('/deleteNote', auth.check, (req, res) => {
+		db.deleteNote(req.body.key, err => {
+			if(err) {
+				return res.json({
+					message: `An error occurred while deleting note by key ${req.body.key}`,
+					status:  'error'
+				})
+			}
+			res.json({
+				message: req.body.key,
+				status: 'Ok'
+			})
+		})
+	})
+
 	router.get('/logout', auth.check, auth.drop)
 
 	return router

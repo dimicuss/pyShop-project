@@ -34,16 +34,14 @@ module.exports = {
 			.equalTo(login)
 			.once('value')
 			.then( snapshot => {
-				let notes = snapshot.exportVal()
-
+				const notes = snapshot.exportVal()
 				if(!notes) {
 					let err = new Error(`There is no such note for user "${login}"`)
 					return cb(err)
 				}
 				cb(null, notes)
 			})
-			.catch( err => {
-				cb(null, err)
+			.catch( err => {				cb(null, err)
 			})
 	},
 
@@ -58,9 +56,11 @@ module.exports = {
 			.then(  () => cb())
 			.catch(err => cb(err))
 
+	},
+
+	deleteNote: function (key, cb) {
+		db.ref(`/notes/${key}`).remove()
+			.then(  () => cb())
+			.catch(err => cb(err))
 	}
 }
-
-
-
-
